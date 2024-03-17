@@ -734,6 +734,7 @@ public:
       _baseInst(instId, options) {
     _inst._opCapacity = uint8_t(opCapacity);
     _inst._opCount = uint8_t(opCount);
+    _resetOps();
   }
 
   inline InstNode(InstId instId, InstOptions options, uint32_t opCount, uint32_t opCapacity = kBaseOpCapacity) noexcept
@@ -741,6 +742,7 @@ public:
       _baseInst(instId, options) {
     _inst._opCapacity = uint8_t(opCapacity);
     _inst._opCount = uint8_t(opCount);
+    _resetOps();
   }
 
   //! \cond INTERNAL

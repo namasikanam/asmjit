@@ -276,16 +276,16 @@ Error formatInstruction(
   FormatFlags formatFlags,
   const BaseEmitter* emitter,
   Arch arch,
-  const BaseInst& inst, const Operand_* operands, size_t opCount) noexcept {
+  const BaseInst& inst, const Operand_* operands, size_t opCount,int cond) noexcept {
 
 #if !defined(ASMJIT_NO_X86)
   if (Environment::isFamilyX86(arch))
-    return x86::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount);
+    return x86::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount, cond);
 #endif
 
 #if !defined(ASMJIT_NO_AARCH64)
   if (Environment::isFamilyARM(arch))
-    return a64::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount);
+    return a64::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount, cond);
 #endif
 
   return kErrorInvalidArch;
@@ -411,7 +411,7 @@ Error formatNode(
       const InstNode* instNode = node->as<InstNode>();
       ASMJIT_PROPAGATE(builder->_funcs.formatInstruction(sb, formatOptions.flags(), builder,
         builder->arch(),
-        instNode->baseInst(), instNode->operands(), instNode->opCount()));
+        instNode->baseInst(), instNode->operands(), instNode->opCount(), false));
       break;
     }
 
@@ -527,7 +527,7 @@ Error formatNode(
       const InvokeNode* invokeNode = node->as<InvokeNode>();
       ASMJIT_PROPAGATE(builder->_funcs.formatInstruction(sb, formatOptions.flags(), builder,
         builder->arch(),
-        invokeNode->baseInst(), invokeNode->operands(), invokeNode->opCount()));
+        invokeNode->baseInst(), invokeNode->operands(), invokeNode->opCount(), false));
       break;
     }
 #endif

@@ -206,7 +206,7 @@ ASMJIT_API Error formatInstruction(
   FormatFlags formatFlags,
   const BaseEmitter* emitter,
   Arch arch,
-  const BaseInst& inst, const Operand_* operands, size_t opCount) noexcept;
+  const BaseInst& inst, const Operand_* operands, size_t opCount, int cond) noexcept;
 
 #ifndef ASMJIT_NO_BUILDER
 //! Appends a formatted node to the output string `sb`.
