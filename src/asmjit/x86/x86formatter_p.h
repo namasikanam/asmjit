@@ -19,35 +19,35 @@ ASMJIT_BEGIN_SUB_NAMESPACE(x86)
 //! \addtogroup asmjit_x86
 //! \{
 
-namespace FormatterInternal {
+            namespace FormatterInternal {
 
-Error ASMJIT_CDECL formatFeature(
-  String& sb,
-  uint32_t featureId) noexcept;
+                Error ASMJIT_CDECL formatFeature(
+                        String& sb,
+                        uint32_t featureId) noexcept;
 
-Error ASMJIT_CDECL formatRegister(
-  String& sb,
-  FormatFlags flags,
-  const BaseEmitter* emitter,
-  Arch arch,
-  RegType regType,
-  uint32_t regId) noexcept;
+                Error ASMJIT_CDECL formatRegister(
+                        String& sb,
+                        FormatFlags flags,
+                        const BaseEmitter* emitter,
+                        Arch arch,
+                        RegType regType,
+                        uint32_t regId) noexcept;
 
-Error ASMJIT_CDECL formatOperand(
-  String& sb,
-  FormatFlags flags,
-  const BaseEmitter* emitter,
-  Arch arch,
-  const Operand_& op) noexcept;
+                Error ASMJIT_CDECL formatOperand(
+                        String& sb,
+                        FormatFlags flags,
+                        const BaseEmitter* emitter,
+                        Arch arch,
+                        const Operand_& op) noexcept;
 
-Error ASMJIT_CDECL formatInstruction(
-  String& sb,
-  FormatFlags flags,
-  const BaseEmitter* emitter,
-  Arch arch,
-  const BaseInst& inst, const Operand_* operands, size_t opCount, int cond) noexcept;
+                Error ASMJIT_CDECL formatInstruction(
+                        String& sb,
+                        FormatFlags flags,
+                        const BaseEmitter* emitter,
+                        Arch arch,
+                        const BaseInst& inst, const Operand_* operands, size_t opCount, int cond, int shift) noexcept;
 
-} // {FormatterInternal}
+            } // {FormatterInternal}
 
 //! \}
 //! \endcond
