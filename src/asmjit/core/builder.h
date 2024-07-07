@@ -708,8 +708,7 @@ public:
 
   enum : uint32_t {
     //! Count of embedded operands per `InstNode` that are always allocated as a part of the instruction. Minimum
-    //! embedded operands is 4, but in 32-bit more pointers are smaller and we can embed 5. The rest (up to 6 operands)
-    //! is always stored in `InstExNode`.
+    //! embedded operands is 4, but in 32-bit more pointers are smaller and we can embed 5.
     kBaseOpCapacity = uint32_t((128 - sizeof(BaseNode) - sizeof(BaseInst)) / sizeof(Operand_))
   };
 
@@ -721,7 +720,7 @@ public:
   //! Base instruction data.
   BaseInst _baseInst;
   //! First 4 or 5 operands (indexed from 0).
-  Operand_ _opArray[kBaseOpCapacity];
+  Operand_ _opArray[6];
 
   //! \}
 
@@ -926,32 +925,6 @@ public:
     return base + opCapacity * sizeof(Operand);
   }
   //! \endcond
-
-  //! \}
-};
-
-//! Instruction node with maximum number of operands.
-//!
-//! This node is created automatically by Builder/Compiler in case that the required number of operands exceeds
-//! the default capacity of `InstNode`.
-class InstExNode : public InstNode {
-public:
-  ASMJIT_NONCOPYABLE(InstExNode)
-
-  //! \name Members
-  //! \{
-
-  //! Continued `_opArray[]` to hold up to `kMaxOpCount` operands.
-  Operand_ _opArrayEx[Globals::kMaxOpCount - kBaseOpCapacity];
-
-  //! \}
-
-  //! \name Construction & Destruction
-  //! \{
-
-  //! Creates a new `InstExNode` instance.
-  inline InstExNode(BaseBuilder* cb, InstId instId, InstOptions options, uint32_t opCapacity = Globals::kMaxOpCount) noexcept
-    : InstNode(cb, instId, options, opCapacity) {}
 
   //! \}
 };
